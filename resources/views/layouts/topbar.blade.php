@@ -68,9 +68,12 @@
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem">Support</a>
                             <hr>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                role="menuitem">Sign
+                            <a href="{{ route ('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout').submit();"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign
                                 out</a>
+                            <form id="logout" method="POST" action="{{ route ('logout') }}" style="display: none">@csrf
+                            </form>
                         </div>
                         <div>
                             <button @click="profileIsOpen = !profileIsOpen" @click.away="profileIsOpen = false"

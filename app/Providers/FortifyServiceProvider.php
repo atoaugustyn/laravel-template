@@ -7,6 +7,7 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Responses\LogoutResponse;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -18,9 +19,12 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerResponseBindings();
     }
-
+    protected function registerResponseBindings()
+    {
+        $this->app->singleton(LogoutResponseContract::class, LogoutResponse::class);
+    }
     /**
      * Bootstrap any application services.
      *
