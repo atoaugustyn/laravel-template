@@ -8,7 +8,7 @@
                 <div>
                     <div class="ml-14 flex items-baseline space-x-4">
                         <button class="p-1 text-gray-800 hover:text-blue-900 focus:outline-nonetext-sm
-                            hover:text-white focus:outline-none lg:hidden" @click=" sidebarIsOpen=!sidebarIsOpen">
+                            focus:outline-none" @click=" sidebarIsOpen=!sidebarIsOpen">
                             <span>
                                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 23"
                                     stroke="currentColor" aria-hidden="true">
@@ -18,6 +18,29 @@
                                 </svg>
                             </span>
                         </button>
+                        <div x-data="{ addMenuIsOpen: false }">
+                            <div x-show.transition.duration.500ms.opacity.scale.25.origin.top.right="addMenuIsOpen"
+                                class="absolute left-25 mt-10 w-48 rounded-sm shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+                                role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    role="menuitem">Add something</a>
+
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    role="menuitem">Support</a>
+                            </div>
+                            <div>
+                                <button @click="addMenuIsOpen = !addMenuIsOpen" @click.away="addMenuIsOpen = false"
+                                    class="ml-4 pt-2 text-gray-800 hover:text-blue-900 focus:outline-none"
+                                    id="user-menu" aria-haspopup="true">
+                                    <span class="sr-only">Open user menu</span>
+                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 23 23" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,8 +97,8 @@
                         </div>
                         <div>
                             <button @click="profileIsOpen = !profileIsOpen" @click.away="profileIsOpen = false"
-                                class="ml-4 pt-2 text-gray-800 hover:text-blue-900 focus:outline-none focus:outline-none"
-                                id="user-menu" aria-haspopup="true">
+                                class="ml-4 pt-2 text-gray-800 hover:text-blue-900 focus:outline-none" id="user-menu"
+                                aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
                                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 23"
                                     stroke="currentColor" aria-hidden="true">
