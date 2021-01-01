@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>@yield('title')</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 </head>
 <style>
     html,
@@ -111,7 +112,7 @@
                         x-transition:enter-start="opacity-25" x-transition:enter-end="opacity-100"
                         x-transition:leave="transition-all ease-in-out duration-300"
                         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                        <a class="py-2 px-2 block hover:underline" href="#">Add user</a>
+                        <a class="py-2 px-2 block hover:underline" href="{{ route ('admin.create') }}">Add user</a>
                         <a class="py-2 px-2 block hover:underline" href="#">Activity log</a>
                         <a class="py-2 px-2 block hover:underline" href="#">Users</a>
                         <a class="py-2 px-2 block hover:underline" href="#">Forms</a>
