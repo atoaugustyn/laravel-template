@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,8 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();;
-        return view('admin.index', compact('users'));
+        $users = User::all();
+        $roles = Role::all();
+        return view('admin.index', compact('users', 'roles'));
     }
 
     /**
@@ -36,7 +40,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        $data = $this->doValidation($request, $user);
+        $user->fill($data);
+        $user->save();
+        // return redirect()->route('name_proposed.index')->with('toast_success', 'Form added successfully.');
+        $role = Role::select('id')->where('name', 'Viewer')->first();
+        $user->roles()->attach($role);
     }
 
     /**
@@ -58,7 +68,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        return view('admin.edit', compact('user', 'roles'));
     }
 
     /**
@@ -70,7 +82,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $data = $this->doValidation($request, $user);
+        $user->update($data);
+        $user->roles()->sync($request->roles);
     }
 
     /**
@@ -82,5 +97,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function doValidation($request, $user)
+    {
+        return $request->validate(
+            [
+                'name' =>  [($user->id) ? "sometimes" : "required", "string"],
+                'email' =>  [($user->id) ? "sometimes" : "required", Rule::unique('users', 'email')->ignore($user->id)],
+                'password' =>  [($user->id) ? "sometimes" : "min:8", "confirmed"],
+            ],
+        );
     }
 }

@@ -6,9 +6,12 @@
 
 <div class="text-right">
     <ul class="space-x-2 text-gray-500 text-xs font-mono">
-        <a href="#">
+        <a href="{{ url('dashboard') }}">
             <li class="inline hover:text-blue-500">Home </li>
-        </a>/
+        </a>>
+        <a href="{{ route('admin.create') }}">
+            <li class="inline text-blue-500">Create user </li>
+        </a>>
         <li class="inline text-gray-400">Users</li>
     </ul>
 </div>
@@ -50,22 +53,24 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <p>{{$user->name}}</p>
+                                        <p>{{ $user->name }}</p>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{$user->email}}</div>
+                                    <div class="text-sm text-gray-900">{{ $user->email }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="px-2 inline-flex"> Active </span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> {{$user->name}}
-                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-500">
                                     <div class="space-x-2">
-                                        <div class="inline-block underline text-blue-500">Edit</div>
-                                        <div class="inline-block underline text-blue-500">View</div>
-                                        <div class="inline-block underline text-red-500">Delete</div>
+                                        <div class="inline-block underline text-blue-400"><a
+                                                href="{{ route('admin.edit',$user->id) }}">Edit</a></div>
+                                        <div class="inline-block underline text-blue-400"><a href="">View</a></div>
+                                        <div class="inline-block underline text-red-400"><a href="">Delete</a></div>
                                     </div>
                                 </td>
                             </tr>
