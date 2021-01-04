@@ -44,7 +44,7 @@ class UserController extends Controller
         $data = $this->doValidation($request, $user);
         $user->fill($data);
         $user->save();
-        // return redirect()->route('name_proposed.index')->with('toast_success', 'Form added successfully.');
+        return redirect()->route('admin.index')->with('toast_success', 'User created successfully.');
         $role = Role::select('id')->where('name', 'Viewer')->first();
         $user->roles()->attach($role);
     }
