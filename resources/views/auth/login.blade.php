@@ -31,10 +31,15 @@
                     @enderror
                 </div>
                 <div class="w-full mt-4 mb-6 md:mb-0">
+                    <input class="hidden js-password-toggle" id="toggle" type="checkbox" />
+
                     <label class="block text-gray-600 text-sm mb-2" for="password">Password</label>
+                    <label
+                        class="absolute top-26 ml-80 mt-2 bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded text-gray-600 text-xs cursor-pointer js-password-label"
+                        for="toggle">show</label>
                     <input
-                        class="@error('password') bg-red-100 @enderror px-2 py-2 rounded-md shadow-sm border border-gray-300 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50 block w-full"
-                        type="password" name="password">
+                        class="@error('password') bg-red-100 @enderror px-2 py-2 rounded-md shadow-sm border border-gray-300 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50 block w-full js-password"
+                        type="password" name="password" id="password">
                     @error('password')
                     <p class="mt-2 text-sm text-red-600">{{ $message}}</p>
                     @enderror
@@ -51,5 +56,24 @@
         </div>
     </div>
 </body>
+<script>
+    const passwordToggle = document.querySelector('.js-password-toggle')
+
+passwordToggle.addEventListener('change', function() {
+  const password = document.querySelector('.js-password'),
+    passwordLabel = document.querySelector('.js-password-label')
+
+  if (password.type === 'password') {
+    password.type = 'text'
+    passwordLabel.innerHTML = 'hide'
+  } else {
+    password.type = 'password'
+    passwordLabel.innerHTML = 'show'
+  }
+
+  password.focus()
+})
+
+</script>
 
 </html>
