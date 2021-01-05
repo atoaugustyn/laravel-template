@@ -126,6 +126,7 @@
 
     <div class="lg:pl-56">
         <div class="my-10 mx-2 px-2 py-2">
+            @include ('partials.alerts')
             @yield('content')
         </div>
     </div>
