@@ -22,4 +22,5 @@ Route::get('dashboard', 'DashboardController@dashboard')->middleware('auth');
 
 Route::resources([
     'admin' => 'UserController',
+    'profile' => 'ProfileController',
 ]);

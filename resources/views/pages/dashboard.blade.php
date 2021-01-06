@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add user')
+@section('title', 'Dashboard')
 
 @section('content')
 
@@ -13,7 +13,7 @@
     </ul>
 </div>
 <div class="bg-gray-50 py-4 rounded-sm px-8 pb-2 mb-10 flex flex-col my-2">
-    <h2 class="my-4 text-gray-800 text-2xl font-bold">Create User</h2>
+    <h2 class="my-4 text-gray-800 text-2xl font-bold">Dashboard</h2>
     <hr class="mb-4">
 
 </div>

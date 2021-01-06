@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        $roles = Role::all();
-        return view('admin.index', compact('users', 'roles'));
+        //
     }
 
     /**
@@ -29,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        //
     }
 
     /**
@@ -40,14 +37,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User;
-        $data = $this->doValidation($request, $user);
-        $user->fill($data);
-        $user->save();
-        $role = Role::select('id')->where('name', 'Viewer')->first();
-        $user->roles()->attach($role);
-        $request->session()->flash('success', 'User created successfully');
-        return redirect()->route('admin.index');
+        //
     }
 
     /**
@@ -70,8 +60,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $roles = Role::all();
-        return view('admin.edit', compact('user', 'roles'));
+        return view('profile.edit', compact('user'));
     }
 
     /**
@@ -83,10 +72,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->except(['_token', 'roles', 'password']));
+        request()->validate(
+            [
+                'name' =>  'sometimes|string',
+                'email' => 'sometimes|email',
+                'password' => 'sometimes|nullable|min:8|confirmed',
+            ],
+        );
+
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
         $user->roles()->sync($request->roles);
-        $request->session()->flash('success', 'User updated successfully.');
+        $request->session()->flash('success', 'Your profile updated successfully');
         return back();
     }
 
@@ -99,16 +99,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function doValidation($request, $user)
-    {
-        return $request->validate(
-            [
-                'name' =>  [($user->id) ? "sometimes" : "required", "string"],
-                'email' =>  [($user->id) ? "sometimes" : "required", Rule::unique('users', 'email')->ignore($user->id)],
-                'password' =>  [($user->id) ? "sometimes" : "required", "min:8", "confirmed"],
-            ],
-        );
     }
 }

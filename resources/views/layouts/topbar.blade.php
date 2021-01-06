@@ -84,8 +84,8 @@
                         <div x-show.transition.duration.500ms.opacity.scale.25.origin.top.right="profileIsOpen"
                             class="absolute right-0 mt-10 w-48 rounded-sm shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                role="menuitem">Your
+                            <a href="{{ route('profile.edit', Auth::user()->id) }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your
                                 Profile</a>
 
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"

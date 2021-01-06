@@ -15,7 +15,7 @@
         <li class="inline text-gray-400">Users</li>
     </ul>
 </div>
-<div class="bg-gray-50 py-4 rounded-sm px-8 pb-2 flex flex-col my-2">
+<div class="bg-gray-50 py-4 rounded-md border px-8 pb-2 flex flex-col my-2">
     <h2 class="my-4 text-gray-800 text-2xl font-bold">Users</h2>
     <hr class="mb-4">
 
