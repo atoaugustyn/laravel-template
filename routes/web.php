@@ -17,10 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-Route::get('dashboard', 'DashboardController@dashboard')->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+    Route::get('dashboard', 'DashboardController@dashboard');
 
-Route::resources([
-    'admin' => 'UserController',
-    'profile' => 'ProfileController',
-]);
+    Route::resources([
+        'admin' => 'UserController',
+        'profile' => 'ProfileController',
+    ]);
+});
