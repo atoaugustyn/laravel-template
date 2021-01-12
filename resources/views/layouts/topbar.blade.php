@@ -26,7 +26,7 @@
                                     role="menuitem">Company</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     role="menuitem">Permit</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                <a href="{{ route('permit_unit.create') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     role="menuitem">Permit Unit</a>
                                 <a href="{{ route('vessel.create') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     role="menuitem">Vessel</a>

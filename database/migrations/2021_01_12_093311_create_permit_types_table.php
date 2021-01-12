@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePermitUnitsTable extends Migration
+class CreatePermitTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreatePermitUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('permit_units', function (Blueprint $table) {
+        Schema::create('permit_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('permit_type');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreatePermitUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permit_units');
+        Schema::dropIfExists('permit_types');
     }
 }

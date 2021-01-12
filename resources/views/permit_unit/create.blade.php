@@ -5,25 +5,24 @@
 @section('content')
 
 <div class="text-right">
-    <ul class="space-x-2 text-gray-500 text-xs font-mono">
+    <ul class="space-x-2 text-gray-500 text-xs ">
         <a href="{{ url('dashboard') }}">
             <li class="inline hover:text-blue-500">Home </li>
         </a>>
         <a href="{{ route('permit_unit.index') }}">
-            <li class="inline text-blue-500">Permit Units </li>
+            <li class="inline text-blue-500">Permit units </li>
         </a>>
         <li class="inline text-gray-400">Create Permit unit</li>
     </ul>
-</div>
+</div>  
 <div class="bg-gray-50 py-4 rounded-md border px-8 pb-2 flex flex-col my-2">
-    <h2 class="my-4 text-gray-800 text-2xl font-bold">Create Permit Units</h2>
+    <h2 class="my-4 text-gray-800 text-2xl font-bold">Create Permit Unit</h2>
     <hr class="mb-4">
-    <form action="{{ route('admin.store') }}" method="POST" class="mx-4 mb-4">
+    <form action="{{ route('permit_unit.store') }}" method="POST" class="mx-4 mb-4">
         @csrf
         <div class="-mx-8 md:flex mb-6">
             <div class="md:w-1/2 px-5 mb-6 md:mb-0">
-                <label class="block tracking-wide text-gray-500 text-sm mb-2" for="Name">Name
-                    name</label>
+                <label class="block tracking-wide text-gray-500 text-sm mb-2" for="Name">Name</label>
                 <input
                     class="@error('name') bg-red-100 @enderror px-2 py-2 rounded-md shadow-sm border border-gray-300 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50 block w-full"
                     type="text" name="name" value="{{ old('name') }}">
@@ -34,10 +33,14 @@
             <div class="md:w-1/2 px-5">
                 <label class="block tracking-wide text-gray-500 text-sm mb-2" for="Permit type">Permit type
                 </label>
-                <input
-                    class="@error('permit_type') bg-red-100 @enderror px-2 py-2 rounded-md shadow-sm border border-gray-300 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50 block w-full"
-                    type="permit_type" value="{{ old('permit_type') }}" name="permit_type">
-                @error('permit_type')
+                <select name="permit_type_id" class="@error('permit_type_id') bg-red-100 @enderror px-2 py-2.5 rounded-md shadow-sm border border-gray-300 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50 block w-full"
+                value="{{ old('permit_type_id') }}" >
+                    <option>Please select permit type</option>
+                    @foreach ($permitTypes as $permitType)
+                        <option value="{{$permitType->id}}"><?php echo (old('permit_type_id') == $permitType->id)? 'selected' : '' ?> {{ $permitType->name }} </option>
+                    @endforeach
+                </select>
+                @error('permit_type_id')
                 <p class="mt-2 text-red-600 text-xs">{{ $message}}</p>
                 @enderror
             </div>

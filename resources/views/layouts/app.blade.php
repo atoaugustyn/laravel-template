@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    
 </head>
 <style>
     html,
@@ -80,7 +80,7 @@
                         x-transition:enter="transition-all ease-in-out duration-300"
                         x-transition:enter-start="opacity-25" x-transition:enter-end="opacity-100"
                         x-transition:leave="transition-all ease-in-out duration-300"
-                        x-transition:lelogave-start="opacity-100" x-transition:leave-end="opacity-0">
+                        x-transition:lelogranchave-start="opacity-100" x-transition:leave-end="opacity-0">
                         <a class="py-1 px-2 block hover:underline" href="#">Safety permits</a>
                         <a class="py-1 px-2 block hover:underline" href="#">Operating permits</a>
                         <a class="py-1 px-2 block hover:underline" href="#">Safety and Operating permits</a>
@@ -156,6 +156,7 @@
     </div>
 
 </body>
-@include('sweetalert::alert')
 
+@include('sweetalert::alert')
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 </html>

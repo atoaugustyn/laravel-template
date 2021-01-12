@@ -27,5 +27,7 @@ Route::middleware(['auth'])->group(function () {
         'company' => 'CompanyController',
         'vessel' => 'VesselController',
         'permit_unit' => 'PermitUnitController',
+        'permit' => 'PermitController',
+        'certificate' => 'CertificateController',
     ]);
 });

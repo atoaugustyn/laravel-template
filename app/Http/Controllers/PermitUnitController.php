@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PermitType;
 use App\Models\PermitUnit;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-
 
 class PermitUnitController extends Controller
 {
@@ -16,8 +16,8 @@ class PermitUnitController extends Controller
      */
     public function index()
     {
-        $permitUnits = PermitUnit::all();
-        return view('permit_unit.create', compact('permitUnits'));
+        $permitUnits = PermitUnit::with('permitTypes')->get();
+        return view('permit_unit.index', compact('permitUnits'));
     }
 
     /**
@@ -27,7 +27,8 @@ class PermitUnitController extends Controller
      */
     public function create()
     {
-        return view('permit_unit.create');
+        $permitTypes = PermitType::all();
+        return view('permit_unit.create', compact('permitTypes'));
     }
 
     /**
@@ -38,7 +39,11 @@ class PermitUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $permitUnit = new PermitUnit;
+        $data = $this->doValidation($request, $permitUnit);
+        $permitUnit->fill($data);
+        $permitUnit->save();
+        return redirect()->route('permit_unit.index')->with('toast_success', 'Permit unit added successfully.');
     }
 
     /**
@@ -90,8 +95,8 @@ class PermitUnitController extends Controller
     {
         return $request->validate(
             [
+                'permit_type_id' =>  [($permitUnit->id) ? "sometimes" : "required", "exists:permit_types,id"],
                 'name' =>  [($permitUnit->id) ? "sometimes" : "required", Rule::unique('permit_units', 'name')->ignore($permitUnit->id)],
-                'permit_type' =>  [($permitUnit->id) ? "sometimes" : "required"],
             ],
         );
     }

@@ -79,7 +79,7 @@ class CompanyController extends Controller
     {
         $data = $this->doValidation($request, $company);
         $company->update($data);
-        return back()->with('toast_success', 'Company updated successfully.');
+        return redirect()->route('company.index')->with('toast_success', 'Company updated successfully.');
     }
 
     /**

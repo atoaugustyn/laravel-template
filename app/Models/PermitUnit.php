@@ -15,8 +15,14 @@ class PermitUnit extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
     public function permit()
     {
         return $this->belongsTo(PermitUnit::class);
+    }
+    
+    public function permitTypes()
+    {
+        return $this->hasMany(PermitType::class, 'id', 'permit_unit_id');
     }
 }

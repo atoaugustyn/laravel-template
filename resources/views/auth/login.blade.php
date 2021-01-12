@@ -18,7 +18,7 @@
     <div class="container-fluid my-2">
         <img src="{{ asset('images/logo.png') }}" alt="Logo" width="80" />
     </div>
-    <div class="w-full py-32 bg-opacity-50 bg-cover bg-no-repeat bg-center " style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ asset("images/hero.jpg") }}">
+    <div class="w-full py-32 bg-opacity-50 bg-cover bg-no-repeat bg-center " style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('{{ asset("images/hero.jpg") }}">
         <h1 class="text-white text-center text-5xl font-medium">Permit Management System</h1>
     </div>
     <div class="flex flex-col items-center mb-6">

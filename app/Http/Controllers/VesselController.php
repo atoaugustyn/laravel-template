@@ -79,7 +79,7 @@ class VesselController extends Controller
     {
         $data = $this->doValidation($request, $vessel);
         $vessel->update($data);
-        return back()->with('toast_success', 'Vessel updated successfully.');
+        return redirect()->route('vessel.index')->with('toast_success', 'Vessel updated successfully.');
     }
 
     /**
