@@ -8,8 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 <style>
     html,
@@ -38,6 +37,33 @@
                         <span class="flex items-center">
                             <span class="mx-2 text-sm font-semibold">Dashboard</span>
                         </span>
+                    </button>
+                    <hr class="border-gray-400">
+                </div>
+                <div x-data="{ open: false }" class="mt-2">
+                    <button onclick="window.location.href='{{ route ('vessel.index') }}'"
+                        class="w-full flex justify-between items-center py-2 text-gray-600 cursor-pointer hover:text-blue-900 focus:outline-none">
+                        <span class="flex items-center">
+                            <span class="mx-2 text-sm font-semibold">Vessels</span>
+                        </span>
+                    </button>
+                    <hr class="border-gray-400">
+                </div>
+                <div x-data="{ open: false }" class="mt-2">
+                    <button onclick="window.location.href='{{ route ('company.index') }}'"
+                        class="w-full flex justify-between items-center py-2 text-gray-600 cursor-pointer hover:text-blue-900 focus:outline-none">
+                        <span class="flex items-center">
+                            <span class="mx-2 text-sm font-semibold">Companies</span>
+                        </span>
+                    </button>
+                    <hr class="border-gray-400">
+                </div>
+                <div x-data="{ open: false }" class="mt-2">
+                    <button @click="open = !open"
+                        class="w-full flex justify-between items-center py-2 text-gray-600 cursor-pointer hover:text-blue-900 focus:outline-none">
+                        <span class="flex items-center">
+                            <span class="mx-2 text-sm font-semibold">Permits</span>
+                        </span>
                         <span>
                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path x-show="! open" d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2"
@@ -50,22 +76,22 @@
                         </span>
                     </button>
                     <hr class="border-gray-400">
-                    <div x-show="open" class="bg-gray-100 py-1 rounded-sm text-gray-600 shadow-inner text-sm"
+                    <div x-show="open" class="bg-gray-100 rounded-sm py-1 text-gray-600 shadow-inner text-sm"
                         x-transition:enter="transition-all ease-in-out duration-300"
                         x-transition:enter-start="opacity-25" x-transition:enter-end="opacity-100"
                         x-transition:leave="transition-all ease-in-out duration-300"
-                        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                        <a class="py-2 px-2 block hover:underline" href="#">Manage
-                            accounts</a>
-                        <a class="py-2 px-2 block hover:underline" href="#">Manage
-                            tickets</a>
+                        x-transition:lelogave-start="opacity-100" x-transition:leave-end="opacity-0">
+                        <a class="py-1 px-2 block hover:underline" href="#">Safety permits</a>
+                        <a class="py-1 px-2 block hover:underline" href="#">Operating permits</a>
+                        <a class="py-1 px-2 block hover:underline" href="#">Safety and Operating permits</a>
+                        <a class="py-1 px-2 block hover:underline" href="#">Permit units</a>
                     </div>
                 </div>
                 <div x-data="{ open: false }" class="mt-2">
                     <button @click="open = !open"
                         class="w-full flex justify-between items-center py-2 text-gray-600 cursor-pointer hover:text-blue-900 focus:outline-none">
                         <span class="flex items-center">
-                            <span class="mx-2 text-sm font-semibold">Components</span>
+                            <span class="mx-2 text-sm font-semibold">Certificates</span>
                         </span>
                         <span>
                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,10 +110,8 @@
                         x-transition:enter-start="opacity-25" x-transition:enter-end="opacity-100"
                         x-transition:leave="transition-all ease-in-out duration-300"
                         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                        <a class="py-2 px-2 block hover:underline" href="#">Typography</a>
-                        <a class="py-2 px-2 block hover:underline" href="#">Buttons</a>
-                        <a class="py-2 px-2 block hover:underline" href="#">Feedback</a>
-                        <a class="py-2 px-2 block hover:underline" href="#">Forms</a>
+                        <a class="py-1 px-2 block hover:underline" href="#">Certificates</a>
+                        <a class="py-1 px-2 block hover:underline" href="#">Expired and expiring certificates</a>
                     </div>
                 </div>
                 <div x-data="{ open: false }" class="mt-2">
@@ -132,6 +156,6 @@
     </div>
 
 </body>
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+@include('sweetalert::alert')
 
 </html>

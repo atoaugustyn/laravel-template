@@ -34,7 +34,7 @@
                     @enderror
                 </div>
                 <div class="flex justify-end mt-6">
-                    <p class="mt-2 mr-4 underline text-blue-700"><a href="http://">Back to login</a>
+                    <p class="mt-2 mr-4 underline text-blue-700"><a href="{{ url('login') }}">Back to login</a>
                     </p>
                     <button type="submit"
                         class="w-fullinline-flex items-center px-12 py-2 bg-blue-600 border border-transparent rounded-md text-base text-white hover:bg-blue-700 focus:outline-none transition ease-in-out duration-150 ml-2">

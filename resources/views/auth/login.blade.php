@@ -15,7 +15,13 @@
 </style>
 
 <body>
-    <div class="flex flex-col items-center">
+    <div class="container-fluid my-2">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo" width="80" />
+    </div>
+    <div class="w-full py-32 bg-opacity-50 bg-cover bg-no-repeat bg-center " style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ asset("images/hero.jpg") }}">
+        <h1 class="text-white text-center text-5xl font-medium">Permit Management System</h1>
+    </div>
+    <div class="flex flex-col items-center mb-6">
         <div class="w-full max-w-md mt-8 px-6 py-6 bg-gray-50 shadow-md rounded-md">
             <h2 class="text-gray-800 text-2xl font-bold">Log In</h2>
             <hr class="my-2">
@@ -45,7 +51,7 @@
                     @enderror
                 </div>
                 <div class="flex justify-end mt-6">
-                    <p class="mt-2 mr-2 underline text-blue-700"><a href="http://">Forgot password?</a>
+                    <p class="mt-2 mr-2 underline text-blue-700"><a href="{{ url('forgot-password') }}">Forgot password?</a>
                     </p>
                     <button type="submit"
                         class="w-fullinline-flex items-center px-12 py-2 bg-blue-600 border border-transparent rounded-md text-base text-white hover:bg-blue-700 focus:outline-none transition ease-in-out duration-150 ml-2">

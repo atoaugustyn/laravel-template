@@ -24,5 +24,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resources([
         'admin' => 'UserController',
         'profile' => 'ProfileController',
+        'company' => 'CompanyController',
+        'vessel' => 'VesselController',
+        'permit_unit' => 'PermitUnitController',
     ]);
 });
