@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="text-right">
-    <ul class="space-x-2 text-gray-500 text-xs font-mono">
+<div class="text-right breadcrumb font-bold">
+    <ul class="space-x-2 text-gray-500 text-xs">
         <a href="{{ url('dashboard') }}">
             <li class="inline hover:text-blue-500">Home </li>
         </a>>
@@ -16,7 +16,7 @@
     </ul>
 </div>
 <div class="bg-gray-50 py-4 rounded-md border px-8 pb-2 flex flex-col my-2">
-    <h2 class="my-4 text-gray-800 text-2xl font-bold">Update Your Profile</h2>
+    <h2 class="my-4 text-gray-800 text-2xl font-medium">Update Your Profile</h2>
     <hr class="mb-4">
     <form action="{{ route('user-profile-information.update') }}" method="POST" class="mx-4 mb-4">
         @csrf
@@ -53,7 +53,8 @@
 </div>
 
 <div class="bg-gray-50 py-6 rounded-md border px-8 pb-2 flex flex-col my-4">
-    <h2 class="text-gray-800 text-2xl font-bold">Update Your Password</h2>
+    <h2 class="my-4 text-gray-800 text-2xl font-medium">Update Your Password</h2>
+    <hr class="mb-4">
     <form action="{{ route('user-password.update') }}" method="POST" class="mx-4 my-4">
         @csrf
         @method('PUT')

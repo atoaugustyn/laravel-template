@@ -15,9 +15,9 @@ class CreatePermitUnitsTable extends Migration
     {
         Schema::create('permit_units', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('permitType_id');
-            $table->foreign('permitType_id')->references('id')->on('permit_types');
+            $table->string('unit');
+            $table->unsignedBigInteger('permit_type_id');
+            $table->foreign('permit_type_id')->references('id')->on('permit_types');
             $table->timestamps();
         });
     }

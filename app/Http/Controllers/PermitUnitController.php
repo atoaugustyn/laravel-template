@@ -6,6 +6,7 @@ use App\Models\PermitType;
 use App\Models\PermitUnit;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class PermitUnitController extends Controller
 {
@@ -16,8 +17,14 @@ class PermitUnitController extends Controller
      */
     public function index()
     {
-        $permitUnits = PermitUnit::with('permitTypes')->get();
-        return view('permit_unit.index', compact('permitUnits'));
+        $permitTypes = DB::table('permit_units')
+            ->join('permit_types', 'permit_types.id', '=', 'permit_units.permit_type_id')
+            ->select('permit_types.*', 'permit_units.unit_name')
+            ->get();
+            return view('permit_unit.index', compact('permitTypes'));
+        
+       
+             
     }
 
     /**

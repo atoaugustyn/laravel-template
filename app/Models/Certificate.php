@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Certificate extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function vessel()
+    {
+        return $this->belongsTo(Vessel::class);
+    }
 }

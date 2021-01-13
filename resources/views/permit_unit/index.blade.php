@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="text-right">
-    <ul class="space-x-2 text-gray-500 text-xs font-mono">
+    <ul class="space-x-2 text-gray-500 text-xs">
         <a href="{{ url('dashboard') }}">
             <li class="inline hover:text-blue-500">Home </li>
         </a>>
@@ -40,21 +40,21 @@
                                 </th>
                             </tr>
                         </thead>
-                        @foreach ($permitUnits as $permitUnit)
+                        @foreach ($permitTypes as $permitType)
                         <tbody class="bg-white divide-y divide-gray-200 text-sm">
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <p>{{ $permitUnit->name }}</p>
+                                        <p>{{ $permitType->name }}</p>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ $permitUnit->permitTypes->name }}</div>
+                                    <div class="text-sm text-gray-900">{{ $permitType->unit_name}}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-gray-500">
                                     <div class="space-x-2">
                                         <div class="inline-block underline text-blue-400"><a
-                                                href="{{ route('permit_unit.edit',$permitUnit->id) }}">Edit</a></div>
+                                                href="{{ route('permit_unit.edit',$permitType->id) }}">Edit</a></div>
                                         <div class="inline-block underline text-blue-400"><a href="">View</a></div>
                                         <div class="inline-block underline text-red-400"><a href="">Delete</a></div>
                                     </div>

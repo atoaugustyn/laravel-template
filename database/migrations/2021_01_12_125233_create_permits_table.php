@@ -23,7 +23,6 @@ class CreatePermitsTable extends Migration
             $table->string('gross_tonnage', 20)->nullable();
             $table->string('imo_number', 20)->nullable();
             $table->string('call_sign', 20)->nullable();
-            $table->string('permit_type');
             $table->date('date_of_issue');
             $table->date('date_of_expiry');
             $table->timestamps();

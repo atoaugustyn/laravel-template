@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Add permit unit')
+@section('title', 'Create permit unit')
 
 @section('content')
 
-<div class="text-right">
-    <ul class="space-x-2 text-gray-500 text-xs ">
+<div class="text-right breadcrumb font-bold">
+    <ul class="space-x-2 text-gray-500 text-xs">
         <a href="{{ url('dashboard') }}">
             <li class="inline hover:text-blue-500">Home </li>
         </a>>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Permit;
 use App\Models\Company;
 use App\Models\PermitUnit;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Http\Request;
 
@@ -41,7 +42,12 @@ class PermitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $permit = new Permit;
+        $data = $this->doValidation($request, $permit);
+        $permit->fill($data);
+        $permit->save();
+
+        return redirect()->route('permit.index')->with('toast_success', 'Permit added successfully.');
     }
 
     /**
@@ -52,7 +58,7 @@ class PermitController extends Controller
      */
     public function show(Permit $permit)
     {
-        //
+        
     }
 
     /**
@@ -87,5 +93,23 @@ class PermitController extends Controller
     public function destroy(Permit $permit)
     {
         //
+    }
+
+    public function doValidation($request, Permit $permit)
+    {
+        return $request->validate(
+            [
+                'company_id' =>  [($permit->id) ? "sometimes" : "required", "exists:companies,id"],
+                'permit_unit_id' =>  [($permit->id) ? "sometimes" : "required", "exists:permit_units,id"],
+                'name_of_vessel' =>  [($permit->id) ? "sometimes" : "required"],
+                'port_of_registry' =>  [($permit->id) ? "sometimes" : "nullable"],
+                'gross_tonnage' =>  [($permit->id) ? "sometimes" : "nullable"],
+                'imo_number' =>  [($permit->id) ? "sometimes" : "nullable", Rule::unique('permits', 'imo_number')->ignore($permit->id)],
+                'call_sign' =>  [($permit->id) ? "sometimes" : "nullable", Rule::unique('permits', 'call_sign')->ignore($permit->id)],
+                'permit_number' =>  [($permit->id) ? "sometimes" : "required", Rule::unique('permits', 'permit_number')->ignore($permit->id)],
+                'date_of_issue' =>  [($permit->id) ? "sometimes" : "required", "date"],
+                'date_of_expiry' =>  [($permit->id) ? "sometimes" : "required", "date"],
+            ],
+        );
     }
 }

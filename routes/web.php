@@ -29,5 +29,7 @@ Route::middleware(['auth'])->group(function () {
         'permit_unit' => 'PermitUnitController',
         'permit' => 'PermitController',
         'certificate' => 'CertificateController',
+        'safety_permit' => 'SafetyPermitController',
+        'operating_permit' => 'OperatingPermitController',
     ]);
 });
