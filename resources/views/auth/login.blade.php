@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <style>
     body {
@@ -16,10 +16,17 @@
 
 <body>
     <div class="container-fluid my-2">
+<<<<<<< HEAD
         <img src="{{ asset('images/logo.png') }}" alt="Logo" width="80" />
     </div>
     <div class="w-full py-32 bg-opacity-50 bg-cover bg-no-repeat bg-center " style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ asset("images/hero.jpg") }}">
         <h1 class="text-white text-center text-5xl font-medium">Permit Management System</h1>
+=======
+        <img src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Logo" width="50" />
+    </div>
+    <div class="w-full py-32 bg-opacity-50 bg-cover bg-no-repeat bg-center " style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('{{ asset("images/hero.jpg") }}">
+        <h1 class="text-white text-center text-5xl font-medium">Lorem Ipsum Dolor</h1>
+>>>>>>> 01dc5baa6efebdf000efb3768f08ad4085a76dfe
     </div>
     <div class="flex flex-col items-center mb-6">
         <div class="w-full max-w-md mt-8 px-6 py-6 bg-gray-50 shadow-md rounded-md">
@@ -48,7 +55,7 @@
                         type="password" name="password" id="password">
                     @error('password')
                     <p class="mt-2 text-sm text-red-600">{{ $message}}</p>
-                    @enderror
+                    @enderror 
                 </div>
                 <div class="flex justify-end mt-6">
                     <p class="mt-2 mr-2 underline text-blue-700"><a href="{{ url('forgot-password') }}">Forgot password?</a>
